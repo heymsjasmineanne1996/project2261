@@ -1,0 +1,71 @@
+<style>
+span{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+div#profileInfo{
+	backgroundcolor: grey;
+	width: 50%; margin: 0 auto;
+}
+
+.subHeading{
+	background-color: #cccccc;
+	padding: 15px;
+}
+
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+$("#sendToAgent").click(function() {
+     alert("Sent Profile Info To Agent!")
+});
+
+});
+
+</script>
+
+<h3>Profile Info</h3>
+
+<a href='/editprofile'>Edit My Profile</a>
+
+<hr>
+<label>Username: </label> {{user.username}} </br>
+
+<hr>
+<div id="profileInfo">
+<hr><h4 class="subHeading">Personal Info</h4> <hr>
+
+<span>First Name:  </span> {{user.Fname}} </br>
+<span>Last Name:    </span> {{user.Lname}} </br>
+<span>Birthdate:    </span> {{user.birthdate}} </br>
+<span>Marital Status:    </span> {{user.maritalStatus}} </br>
+
+<hr><h4 class="subHeading">Contact Info Info</h4><hr>
+<span>Phone Number:    </span> {{user.phoneNumber}} </br>
+<span>E-mail Address:    </span> {{user.Eaddress}} </br>
+<span>Address:    </span> {{user.address}} </br>
+<span>City:    </span> {{user.city}} </br>
+<span>Province:    </span> {{user.province}} </br>
+<span>Postal Code:    </span> {{user.postalCode}} </br>
+
+<hr><h4 class="subHeading">Educational Info</h4><hr>
+
+<span>Highest Education Completed:    </span> {{user.highestEducCompleted}} </br>
+<span>Post Secondary Credentials:    </span> {{user.postSecCred}} </br>
+<span>Post Graduation Credentials:    </span> {{user.postGradCred}} </br>
+<hr> 
+<h4>IELTS Marks</h4>
+<span>Overall Mark:    </span> {{user.overallMark}} </br>
+<span>Reading Mark:    </span> {{user.reading}} </br>
+<span>Writing Mark:    </span> {{user.writing}} </br>
+<span>Listening Mark:    </span> {{user.listening}} </br>
+<span>Speaking Mark:    </span> {{user.speaking}} </br>
+<hr>
+
+      <div class="button">
+        <input type="submit" value="Send to Agent" id="sendToAgent">
+      </div>
+ </div>

@@ -1,0 +1,33 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+    	$("#deleteUser").click(function(){
+
+    			var username = $("input[name='username']").val();
+				$.ajax({
+                                	url: "/users/" + username,
+	                                type: "DELETE",
+        	                        contentType: 'application/json',
+                	                data: JSON.stringify({
+                	                	username: username
+                	                }),
+                        	        success: function(result) {
+										alert(username + " deleted.")
+									
+                  }
+				});
+		});
+
+});
+</script>
+
+<h3>Delete User</h3>
+
+<hr><h4 id="personalInfoHeading">Personal Info</h4><hr>
+
+<div id="personalInfo">
+        <label>Username:</label>
+        <input type="text" name="username" value="" />
+        <br/>
+
+  <div>
+<button id="deleteUser">Delete User</button>

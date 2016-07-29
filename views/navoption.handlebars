@@ -1,0 +1,110 @@
+<style>
+
+* {
+    padding:0;
+    margin:0;
+}
+
+html{
+    font:14px normal Arial, sans-serif;
+    color:#626771;
+    background-color:#fff;
+}
+
+body{
+    background-color: grey;
+    padding:60px;
+    text-align: center;
+}
+
+ul{
+    list-style:none;
+    display: inline-block;
+}
+
+ul li{
+    display: inline-block;
+    padding: 10px 20px;
+    cursor:pointer;
+    background-color:#eee;
+    color:#7B8585;
+    
+    transition:0.3s;
+}
+
+ul li:hover{
+    background-color:#beecea;
+}
+
+ul li.focused{
+    color:#fff;
+    background-color:#41c7c2;
+}
+
+p{
+    padding-top:15px;
+    font-size:12px;
+} </style>
+
+<script src="https://fb.me/react-0.14.6.js"></script>
+<script src="https://fb.me/react-dom-0.14.6.js"></script>
+<script src="http://fb.me/JSXTransformer-0.12.1.js"></script>
+<script>https://fb.me/react-devtools</script>
+<script type="text/jsx">
+var MenuExample = React.createClass({
+
+    getInitialState: function(){
+        return { focused: 0 };
+    },
+
+    clicked: function(index){
+
+        // The click handler will update the state with
+        // the index of the focused menu entry
+
+        this.setState({focused: index});
+    },
+
+    render: function() {
+
+        // Here we will read the items property, which was passed
+        // as an attribute when the component was created
+
+        var self = this;
+
+        // The map method will loop over the array of menu entries,
+        // and will return a new array with <li> elements.
+
+        return (
+            <div>
+                <ul>{ this.props.items.map(function(m, index){
+        
+                    var style = '';
+        
+                    if(self.state.focused == index){
+                        style = 'focused';
+                    }
+        
+                    // Notice the use of the bind() method. It makes the
+                    // index available to the clicked function:
+        
+                    return <li className={style} onClick={self.clicked.bind(self, index)}>{m}</li>;
+        
+                }) }
+                        
+                </ul>
+                
+                <p>Selected: {this.props.items[this.state.focused]}</p>
+            </div>
+        );
+
+    }
+});
+
+// Render the menu component on the page, and pass an array with menu options
+
+ReactDOM.render(
+    <MenuExample items={ ['Home', 'Services', 'About', 'Contact us'] } />,
+    document.getElementById('container')
+);
+</script>

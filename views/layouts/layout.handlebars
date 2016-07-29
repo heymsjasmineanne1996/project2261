@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Educational Assessment</title>
+    <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="User Authentication">
+  <meta name="author" content="">
+  <link rel="stylesheet" href="/css/style.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+  <link rel="stylesheet" href="/css/bootstrap.css" />
+  <script src="http://fb.me/react-0.10.0.min.js"></script>
+
+</script>
+
+<style>* {
+    padding:0;
+    margin:0;
+}
+
+html{
+    font:14px normal Arial, sans-serif;
+    color:#626771;
+    background-color:#fff;
+}
+
+body{
+    padding:60px;
+    text-align: center;
+}
+
+ul{
+    list-style: none;
+    display: inline-block;
+}
+
+ul li{
+    display: inline-block;
+    padding: 10px 20px;
+    cursor:pointer;
+    background-color: #eee;
+    color:#7B8585;
+    
+    transition:0.1s;
+}
+
+ul li:hover{
+    background-color:#beecea;
+}
+
+ul li.focused{
+    color:#fff;
+    background-color:#41c7c2;
+}
+
+p{
+    padding-top:15px;
+    font-size:12px;
+}
+
+footer{
+  background-color: #bfbfbf;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  border-top: #a6a6a6 solid 1.5px;
+  border-bottom: #a6a6a6 solid 1.5px;
+}
+
+.text-muted{
+  padding-left: 210px;
+}
+
+</style>
+</head>
+<body>
+  <div class="container">
+
+      <div class="header clearfix">
+           <ul class="nav nav-pills pull-left">
+        <h3 class="text-muted">Educational Assessment</h3>
+        <h6 class="text-muted">Powered by Heritage Immigration</h6>
+      </ul>
+          <ul class="nav nav-pills pull-right">
+            {{#if user}}
+              <li role="presentation"><a href="/">Dashboard</a></li>
+              <li role="presentation"><a href="/profile"> View Profile</a></li>
+              <li role="presentation"><a href="/editprofile">Edit Profile</a></li>
+              <li role="presentation"><a href="/schools">Schools</a></li>
+              <li role="presentation"><a href="/users/logout">Logout</a></li>
+            {{else}}
+              <li role="presentation"><a href="/users/login">Login</a></li>
+              <li role="presentation"><a href="/users/register">Register</a></li>
+            {{/if}}
+          </ul>
+        </nav>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-lg-12">
+          {{#if success_msg}}
+            <div class="alert alert-success">{{success_msg}}</div>
+          {{/if}}
+
+          {{#if error_msg}}
+            <div class="alert alert-danger">{{error_msg}}</div>
+          {{/if}}
+
+          {{#if error}}
+            <div class="alert alert-danger">{{error}}</div>
+          {{/if}}
+          
+          {{{body}}}
+        </div>
+      </div>
+</br>
+      <footer>
+        <p>&copy; All Rights Reserved 2016</p>
+      </footer>
+
+    </div> <!-- /container -->
+</body>
+</html>

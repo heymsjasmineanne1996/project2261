@@ -1,0 +1,105 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+
+/*
+$("#MYTABLE")."click", "td", function() {
+     $("#display").show();
+alert("hi");
+});
+*/
+
+
+
+$("#showDetails").click( function() {
+     $("#display").html("hello there" + " {{user.username}}"); 
+});
+
+     });
+  </script>
+
+
+<style>
+th {
+    border-bottom: 1px solid #d6d6d6;
+}
+
+td{
+  border: solid 1px;
+  border-color: #4d4d4d;
+}
+
+thead th{
+  border: solid 2px;
+  background-color: #cccccc;
+  border-color: #4d4d4d;
+}
+
+tr:nth-child(even) {
+    background: #e9e9e9;
+}
+
+.ui-content{
+  border-style: black 1px;
+  background-color: #cccccc;
+}
+
+</style>
+<h2>BC Schools</h2>
+</br>
+      <form method="get" action='/search'>
+        <input type="submit" value="Show Full List of Schools" id="showDetails"></form>
+      </div>
+      <input type="text" id="filterTable-input" name = "searchItem" data-type="search" placeholder="Search For Customers..."/>
+
+    <table data-role="table" data-mode="columntoggle" class="ui-responsive ui-shadow" id="myTable" data-filter="true" data-input="#filterTable-input">
+      <thead id="thead">
+        <tr>
+          <th data-priority="2">Row ID</th>
+          <th data-priority="1">School Name</th>
+          <th data-priority="3">Address</th>
+          <th data-priority="4">City</th>
+          <th data-priority="5">PostalCode</th>
+          <th data-priority="6">Application Fees</th>
+          <th data-priority="7">Semester Intakes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Langara College</td>
+          <td>100 West 49th Avenue</td>
+          <td>Vancouver, BC</td>
+          <td>V5Y 2Z6</td>
+          <td>$40 Domestic || $155 International</td>
+          <td>September, January, May</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>University of British Columbia</td>
+          <td>2329 West Mall</td>
+          <td>Vancouver, BC</td>
+          <td>V6T 1Z4</td>
+          <td>$66.75 Domestic || $112.00 International</td>
+          <td>September, January, May</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>British Columbia Institute of Technology</td>
+          <td>3700 Willingdon Avenue</td>
+          <td>Burnaby, BC</td>
+          <td>V5G 3H2</td>
+          <td>$60 Domestic || $100 International</td>
+          <td>September, January</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Simon Fraser University</td>
+          <td>8888 University Dr</td>
+          <td>Burnaby, BC</td>
+          <td>V5A 1S6</td>
+          <td>$90 Domestic || $125 International</td>
+          <td>September, January</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

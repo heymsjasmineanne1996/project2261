@@ -1,0 +1,202 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+
+$("#personalInfoHeading").click(function() {
+     $("#personalInfo").toggle("slow");
+});
+
+$("#educInfoHeading").click(function() {
+     $("#educInfo").toggle("slow");
+});
+
+$("#contactInfoHeading").click(function() {
+     $("#contactInfo").toggle("slow");
+});
+
+    $("#postSecCred").hide();
+$("#postSecondary").change(function () {
+        if($("#postSecondary").prop('checked') == true){
+            $("#postSecCred").show();
+        }
+        if($("#postSecondary").prop('checked') == false){
+            $("#postSecCred").hide();
+        }
+}); 
+
+    $("#postGradCred").hide();
+$("#postGrad").change(function () {
+        if($("#postGrad").prop('checked') == true){
+            $("#postGradCred").show();
+        }
+        if($("#postGrad").prop('checked') == false){
+            $("#postGradCred").hide();
+        }
+});   
+
+            $("#IELTScomponents").hide();
+
+$("#IELTS").click(function() {
+    $("#IELTScomponents").toggle("slow");
+});
+
+            $("#update").click(function(){
+
+                //personal info
+                var username = "{{user.username}}";
+                var firstName = $("input[name='Fname']").val();
+                var lastName = $("input[name='Lname']").val();
+                var birthdate = $("input[name='birthdate']").val();
+                var maritalStatus = $("#maritalStatus option:selected").text();
+ 
+                //contact info
+                var phoneNum = $("input[name='phoneNum']").val();
+                var Eaddress = $("input[name='Eaddress']").val();
+                var address = $("input[name='address']").val();
+                var city = $("input[name='city']").val();
+                var province = $("input[name='province']").val();
+                var postalCode = $("input[name='postalCode']").val();
+
+
+                //educational info
+                var highestEducCompleted = $("input[name='highestEducCompleted']").val();
+                var postSecCred = $("input[name='postSecCred']").val();
+                var postGradCred = $("input[name='postGradCred']").val();
+                var postSecondary = $("input[name='postSecondary']").val();
+                var postGrad = $("input[name='postGrad']").val();
+                var overallMark = $("input[name='overallMark']").val();
+                var reading = $("input[name='reading']").val();
+                var writing = $("input[name='writing']").val();
+                var listening = $("input[name='listening']").val();
+                var speaking = $("input[name='speaking']").val();
+
+
+                                $.ajax({
+                                        url: "/users/" + username,
+                                        type: "PUT",
+                                        contentType: 'application/json',
+                                        data: JSON.stringify({
+                                                            username: username,
+                                                            Fname: firstName,
+                                                            Lname: lastName,
+                                                            birthdate: birthdate,
+                                                            maritalStatus: maritalStatus,
+                                                            phoneNum: phoneNum,
+                                                            Eaddress: Eaddress,
+                                                            address: address,
+                                                            city: city,
+                                                            province: province,
+                                                            postalCode: postalCode,
+                                                            highestEducCompleted: highestEducCompleted,
+                                                            postSecCred: postSecCred,
+                                                            postGradCred: postSecCred,
+                                                            postSecondary: postSecondary,
+                                                            postGrad: postGrad,
+                                                            overallMark: overallMark,
+                                                            reading: reading,
+                                                            writing: writing,
+                                                            listening: listening,
+                                                            speaking: speaking
+                                                             }),
+
+                                        success: function(result) {
+                                                //$("#result").html(result);
+                                                alert("success");
+                                        }
+                                });
+
+                        });
+
+
+//closing jquery  
+}); 
+</script>
+
+<h3>Edit Profile {{user.username}}</h3> 
+
+<form action="/profileupdated" method="post">
+
+<hr><h4 id="personalInfoHeading">Personal Info</h4><hr>
+
+<div id="personalInfo">
+        <label>First Name:</label>
+        <input type="text" name="Fname" value="{{user.Fname}}" />
+        <br/>
+        <label>Last Name:</label>
+        <input type="text" name="Lname" value="{{user.Lname}}" />
+        <br/>
+        <label>Birthdate:</label>
+        <input type="date" name="birthdate" id="birthdate" value="{{user.birthdate}}"/>
+        <br/>
+        <label>Marital Status:</label> <select id="maritalStatus" value="{{user.maritalStatus}}">
+            <option value="single">Single</option>
+            <option value="married">Married</option>
+            <option value="divorced">Divorced</option>
+            <option value="widowed">Widowed</option>
+        </select>
+</div>
+
+<hr>
+<h4 id="contactInfoHeading">Contact Info</h4>
+<hr>
+<div id="contactInfo">
+        <label>Phone Number:</label>
+        <input type="text" name="phoneNum" value="{{user.phoneNum}}" />
+        <br/>
+        <label>Email Address:</label>
+        <input type="text" name="Eaddress" value="{{user.Eaddress}}" />
+        <br/>
+        <label>Address:</label>
+        <input type="text" name="address" value="{{user.address}}" />
+        <br/>
+        <label>City:</label>
+        <input type="text" name="city" value="{{user.city}}"/>
+        <br/>
+        <label>Province:</label>
+        <input type="text" name="province" value="{{user.province}}" />
+        <br/>
+        <label>Postal Code:</label>
+        <input type="text" name="postalCode" value="{{user.postalCode}}" />
+        <br/>
+
+</div>
+
+<hr>
+<h4 id="educInfoHeading">Educational Info</h2>
+<hr>
+<div id="educInfo">
+        
+        <label>Highest Level of Education Completed: </label> <input type="text" name="highestEducCompleted" id="highestEducCompleted" value="{{user.highestEducCompleted}}">
+        </br>
+
+        <input type="checkbox" name="postSecondary" id="postSecondary"> <label>Post Secondary</label> <input type="text" name="postSecCred" id="postSecCred" placeholder=" Credentials" value="{{user.postSecCred}}"/>
+        <br/>
+        
+        <input type="checkbox" name="postGrad" id="postGrad"> <label>Post Grad</label> <input type="text" name="postGradCred" id="postGradCred" placeholder="Credentials" value="{{user.postGradCred}}"/>
+
+        </br>
+        </br>
+        <button type="button" id="IELTS">I have IELTS results</button>
+        </br>
+
+        <div id="IELTScomponents">
+                </br> 
+                <label>Overall Mark</label> <input type="number" name="overallMark" id="overallMark" value="{{user.overallMark}}">
+
+                </br>
+            <ul id="IELTScomponents">
+                <label>Reading</label>  <input type="number" name="reading" id="reading" value="{{user.reading}}">
+               <label>Writing</label> <input type="number" name="writing" id="writing" value="{{user.writing}}">
+                <label>Listening</label> <input type="number" name="listening" id="listening" value="{{user.listening}}">
+                <label>Speaking</label> <input type="number" name="speaking" id="speaking" value="{{user.speaking}}">
+            </ul>
+        </div>
+</div>
+
+
+<hr>
+      <div class="button">
+        <input type="submit" value="Update Profile" id="update">
+      </div>
+</br>
+</form>
+

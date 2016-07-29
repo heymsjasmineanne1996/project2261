@@ -1,0 +1,49 @@
+<h3> Announcements</h3>
+
+<script type="text/javascript">
+ $(document).ready(function() {
+$("#update").click(function(){
+
+                //personal info
+                var username = $("input[name='username']").val;
+                var announcement = $("input[name='announcement']").val;
+
+                                $.ajax({
+                                        url: "/users/" + username,
+                                        type: "PUT",
+                                        contentType: 'application/json',
+                                        data: JSON.stringify({
+                                                            username: username,
+                                                            announcement: announcement
+                                                             }),
+
+                                        success: function(result) {
+                                                //$("#result").html(result);
+                                                alert("success");
+                                        }
+                                });
+
+                                });
+
+});
+
+</script>
+
+<form action="/sendannouncement" method="put">
+
+<hr><h4 id="personalInfoHeading">Personal Info</h4><hr>
+
+<div id="personalInfo">
+        <label>Username:</label>
+        <input type="text" name="username" value="" />
+        <br/>
+
+                <label>Announcement</label>
+        <input type="text" name="announcement" value="" />
+        <br/>
+
+      <div class="button">
+        <input type="submit" value="Send Announcement" id="update">
+      </div>
+
+ </form>
